@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <path
+        android:name="pentagram_path_outline"
+        android:pathData="M12,2.68L15.09,8.51L22,9.31L17,14.07L18.18,20.82L12,17.77L5.82,20.82L7,14.07L2,9.31L8.91,8.51L12,2.68Z"
+        android:strokeWidth="2"
+        android:strokeColor="#000000"
+        android:fillColor="#00000000" />
+
+    <group>
+        <clip-path
+            android:pathData="M12,2.68L15.09,8.51L22,9.31L17,14.07L18.18,20.82L12,17.77L5.82,20.82L7,14.07L2,9.31L8.91,8.51L12,2.68Z" />
+
+        <path
+            android:name="stripe1"
+            android:pathData="M0,7 L24,7"
+            android:strokeWidth="1.5"
+            android:strokeColor="#FFFFFF" />
+        <path
+            android:name="stripe2"
+            android:pathData="M0,10 L24,10"
+            android:strokeWidth="1.5"
+            android:strokeColor="#FFFFFF" />
+        <path
+            android:name="stripe3"
+            android:pathData="M0,13 L24,13"
+            android:strokeWidth="1.5"
+            android:strokeColor="#FFFFFF" />
+        <path
+            android:name="stripe4"
+            android:pathData="M0,16 L24,16"
+            android:strokeWidth="1.5"
+            android:strokeColor="#FFFFFF" />
+        <path
+            android:name="stripe5"
+            android:pathData="M0,19 L24,19"
+            android:strokeWidth="1.5"
+            android:strokeColor="#FFFFFF" />
+    </group>
+</vector>

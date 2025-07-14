@@ -1,0 +1,17 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <path
+        android:name="squiggle_outline"
+        android:pathData="M3,12 C3,6 9,6 9,12 C9,18 15,18 15,12 C15,6 21,6 21,12 Z"
+        android:strokeWidth="2"
+        android:strokeColor="#000000"
+        android:fillColor="#00000000" /> <path android:pathData="M4,9 L19,9" android:strokeWidth="1" android:strokeColor="#000000" />
+    <path android:pathData="M5,11 L20,11" android:strokeWidth="1" android:strokeColor="#000000" />
+    <path android:pathData="M4,13 L19,13" android:strokeWidth="1" android:strokeColor="#000000" />
+    <path android:pathData="M5,15 L20,15" android:strokeWidth="1" android:strokeColor="#000000" />
+
+</vector>

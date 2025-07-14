@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:background="@drawable/card_background_shape">
+    <LinearLayout
+        android:id="@+id/card_content_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/card_symbol_1"
+            android:layout_width="48dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_shape_diamond_outline"
+            app:tint="@color/set_red" />
+
+        <ImageView
+            android:id="@+id/card_symbol_2"
+            android:layout_width="48dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_shape_diamond_outline"
+            app:tint="@color/set_red"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/card_symbol_3"
+            android:layout_width="48dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_shape_diamond_outline"
+            app:tint="@color/set_red"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/gemini_set_indicator"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:src="@drawable/ic_lightbulb_gemini"
+        android:visibility="gone"
+        android:contentDescription="סט מוצע על ידי ג'מיני" />
+
+</FrameLayout>
