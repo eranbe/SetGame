@@ -39,6 +39,16 @@
             tools:text="קלפים בחבילה: 81" />
 
         <TextView
+            android:id="@+id/sets_found_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="סטים עד כה: 0"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            tools:text="סטים עד כה: 0" />
+        <TextView
             android:id="@+id/game_timer_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

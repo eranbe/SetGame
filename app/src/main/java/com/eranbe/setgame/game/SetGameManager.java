@@ -28,6 +28,8 @@ public class SetGameManager implements GeminiExplanationListener, GeminiHintList
     private final List<SetCard> currentBoardCards = new ArrayList<>();
     private List<SetCard> deck;
 
+    private int setsFound;
+
     public SetGameManager(SetGameListener listener) {
         this.listener = listener;
         this.executorService = Executors.newSingleThreadExecutor();
@@ -38,6 +40,8 @@ public class SetGameManager implements GeminiExplanationListener, GeminiHintList
         return currentBoardCards;
     }
 
+    public int getSetsFound() { return setsFound; }
+
     public boolean isCardSelected(SetCard card) {
         return selectedCards.contains(card);
     }
@@ -47,6 +51,7 @@ public class SetGameManager implements GeminiExplanationListener, GeminiHintList
         selectedCards.clear();
         currentBoardCards.clear();
         deck = null;
+        setsFound = 0;
 
         listener.onToastMessage("המשחק התחיל מחדש!");
         loadInitialCards();
@@ -93,6 +98,7 @@ public class SetGameManager implements GeminiExplanationListener, GeminiHintList
             boolean isCurrentSelectionASet = SetChecker.isSet(card1, card2, card3);
 
             if (isCurrentSelectionASet) {
+                setsFound++;
                 listener.onSetFound();
                 handleSetFound();
             } else {
@@ -167,7 +173,7 @@ public class SetGameManager implements GeminiExplanationListener, GeminiHintList
                     currentBoardCards.add(deck.remove(0));
                 }
             }
-
+            
             selectedCards.clear();
             listener.onBoardChanged(currentBoardCards);
             listener.onCardsRemainingUpdated(deck.size());

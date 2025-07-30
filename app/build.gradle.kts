@@ -36,7 +36,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             // הגדר את ה-API Key עבור בניית Release
-            buildConfigField("String", "GEMINI_API_KEY", "\"AIzaSyD4at5ipDRMHF0ZLwbw8Q_S1jG4TlWIkZs\"")
+            buildConfigField("String", "GEMINI_API_KEY", "API KEY GOES HERE")
         }
         debug {
             // הגדר את ה-API Key עבור בניית Debug

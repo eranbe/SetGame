@@ -6,12 +6,14 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.ScrollView;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.widget.Button;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.eranbe.setgame.R;
 import com.eranbe.setgame.adapter.SetCardAdapter;
 import com.eranbe.setgame.model.SetCard;
 
@@ -23,19 +25,22 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class SetGameActivity extends AppCompatActivity implements SetGameListener, GameTimer.OnTimerUpdateListener {
+public class SetGameActivity extends AppCompatActivity
+        implements SetGameListener, GameTimer.OnTimerUpdateListener {
 
     private SetCardAdapter adapter;
     private TextView cardsRemainingTextView;
     private TextView gameTimerTextView;
     private Button hintButton;
 
+    private TextView setsFoundTextView;
+
     private CheckBox detailedExplanationCheckBox;
 
     private SetGameManager gameManager;
     private GameTimer gameTimer;
 
-    final private List<SetCard> currentHintedSet = new ArrayList<>(); // משתנה לשמירת הסט המוצע ע"י ג'מיני
+    final private List<SetCard> currentHintedSet = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +51,7 @@ public class SetGameActivity extends AppCompatActivity implements SetGameListene
         RecyclerView recyclerView = findViewById(R.id.set_recycler_view);
         cardsRemainingTextView = findViewById(R.id.cards_remaining_text_view);
         gameTimerTextView = findViewById(R.id.game_timer_text_view);
+        setsFoundTextView = findViewById(R.id.sets_found_text_view);
         Button restartGameButton = findViewById(R.id.restart_game_button);
         hintButton = findViewById(R.id.hint_button);
         detailedExplanationCheckBox = findViewById(R.id.detailed_explanation_checkbox);
@@ -98,7 +104,8 @@ public class SetGameActivity extends AppCompatActivity implements SetGameListene
 
     @Override
     public void onCardsRemainingUpdated(int remainingCards) {
-        runOnUiThread(() -> cardsRemainingTextView.setText(String.format(Locale.getDefault(), "קלפים בחבילה: %d", remainingCards)));
+        runOnUiThread(() -> cardsRemainingTextView.setText(String.format(Locale.getDefault(),
+                "קלפים בחבילה: %d", remainingCards)));
     }
 
     @Override
@@ -107,14 +114,14 @@ public class SetGameActivity extends AppCompatActivity implements SetGameListene
             Toast.makeText(this, "מצאתם סט! כל הכבוד!", Toast.LENGTH_SHORT).show();
             // כשמוצאים סט, מנקים את הרמז אם היה מוצג
             currentHintedSet.clear();
+            setsFoundTextView.setText(String.format(Locale.getDefault(), "סטים עד כה: %d",
+                    gameManager.getSetsFound()));
             adapter.setGeminiSuggestedSet(currentHintedSet); // מעדכן את האדפטר לנקות את הרמז
         });
     }
 
     @Override
     public void onNotASet(String explanation, boolean isDetailedExplanationRequested) {
-        // הסרנו את currentlySelectedCards.clear() כי זה מטופל ב-gameManager.clearSelection()
-        // וגם את notifyDataSetChanged() כי onBoardChanged כבר נקרא שם
         runOnUiThread(() -> {
             if (isDetailedExplanationRequested) {
                 TextView messageTextView = new TextView(this);
@@ -125,11 +132,16 @@ public class SetGameActivity extends AppCompatActivity implements SetGameListene
                 ScrollView scrollView = new ScrollView(this);
                 scrollView.addView(messageTextView);
 
-                new AlertDialog.Builder(this)
+                AlertDialog notFoundDialog = new AlertDialog.Builder(this)
                         .setTitle("זה לא סט...")
                         .setView(scrollView)
                         .setPositiveButton("הבנתי", (dialog, which) -> dialog.dismiss())
                         .show();
+                // נסה למצוא את ה-TextView של הכותרת בתוך הדיאלוג
+                TextView titleView = notFoundDialog.findViewById(android.R.id.title);
+                if (titleView != null) {
+                    titleView.setGravity(Gravity.RIGHT); // יישור לימין
+                }
             } else {
                 Toast.makeText(this, "זה לא סט... נסו שוב!", Toast.LENGTH_SHORT).show();
             }
